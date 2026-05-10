@@ -1,0 +1,49 @@
+FROM php:8.2-fpm
+
+  #      libapache2-mod-php \\
+RUN apt-get update && \
+	apt-get install -y \
+    apache2 \
+    libapache2-mod-fcgid \
+    libzip-dev \
+    libpng-dev \
+	build-essential \
+    libgd-dev \
+    libonig-dev \
+	libjpeg62-turbo-dev \
+	libfreetype6-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    libpq-dev \
+	zip \
+	unzip \
+	git \
+	nano \
+	curl \
+	vim \
+	wget
+#extensioens de php
+RUN docker-php-ext-install zip gd mbstring curl bcmath soap xml pdo pdo_pgsql pgsql
+# Copy virtual host into container
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+# Enable rewrite mode
+# Enable Apache modules
+RUN a2enmod rewrite
+RUN a2enmod headers
+#RUN a2enconf php8.2-fpm
+RUN a2enmod proxy
+RUN a2enmod proxy_fcgi
+#instalacion de componser
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY ./php.ini /usr/local/etc/php/
+
+# Change the current working directory
+WORKDIR /var/www/html
+
+RUN chown -Rf www-data:www-data /var/www/html
+
+# Start Apache in foreground
+#CMD ["php-fpm"]
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+#CMD service apache2 restart

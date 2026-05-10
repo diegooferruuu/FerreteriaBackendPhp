@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: america-facturacion
+        build: ./docker
+        image: america/facturacion
+
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www/html
+        depends_on:
+            - db
+        links:
+            - db
+    db:
+        container_name: america-postgres
+        image: postgres
+        ports:
+            - "5433:5432"
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: P4ssw0rd
+            POSTGRES_DB: db_facturacion
+#    web:
+#        image: httpd:2.4
+#        ports:
+#            - "81:80"
+#        volumes:
+#            - .:/var/www/http
+#            - ./docker/000-default.conf:/usr/local/apache2/conf/
+#        depends_on:
+#            - app
+volumes:
+    postgres-data:
+

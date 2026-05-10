@@ -1,0 +1,1326 @@
+[
+  {
+    "_id": "3906b2ba-0458-4881-a11f-4b80b0dcf88f",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+    "name": "List",
+    "url": "{{url}}/v1/almacenes?page=1&perpage=1",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-08T20:22:59.164Z",
+    "modified": "2022-09-10T23:52:55.532Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "perpage",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "11a96a3e-a96a-4882-9519-4bd06d62f21a",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+    "name": "Create",
+    "url": "{{url}}/v1/almacenes",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-09T01:11:33.094Z",
+    "modified": "2022-09-09T14:42:51.190Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "nombre",
+        "value": "",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "abreviatura",
+        "value": "",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "nombres",
+          "value": "Almacen de prueba ngrok"
+        },
+        {
+          "name": "abreviatura",
+          "value": "alm",
+          "isDisabled": true
+        },
+        {
+          "name": "direccion",
+          "value": "direccion almacen",
+          "isDisabled": true
+        },
+        {
+          "name": "latitud",
+          "value": "12312312",
+          "isDisabled": true
+        },
+        {
+          "name": "longitud",
+          "value": "7898898",
+          "isDisabled": true
+        },
+        {
+          "name": "telefono",
+          "value": "1223323",
+          "isDisabled": true
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVO",
+          "isDisabled": true
+        },
+        {
+          "name": "localidad_id",
+          "value": "1",
+          "isDisabled": true
+        },
+        {
+          "name": "is_sucursal",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "a17e11c0-d323-47b6-9e2d-c95d684266b9",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+    "name": "Read",
+    "url": "{{url}}/v1/almacenes/7",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-09T12:19:19.306Z",
+    "modified": "2022-09-09T12:26:46.019Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2bd3981e-644e-4c29-b3e2-70699b2200f3",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+    "name": "Update",
+    "url": "{{url}}/v1/almacenes/7",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-09T12:27:13.390Z",
+    "modified": "2022-09-09T12:32:55.985Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0ef6b3a3-f39e-455f-900c-0bd35d4aef57",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+    "name": "Delete",
+    "url": "{{url}}/v1/almacenes/1",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-09T12:28:07.508Z",
+    "modified": "2022-09-09T12:28:39.035Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e8babf43-71fe-4f2f-a045-05e4862b1f5a",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+    "name": "List",
+    "url": "{{url}}/v1/inventarios",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-10T23:31:28.075Z",
+    "modified": "2022-09-23T15:28:48.521Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "almacen",
+        "value": "2",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "c431c871-839d-4c48-9825-7f7c4d0b6d87",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+    "name": "Create",
+    "url": "{{url}}/v1/inventarios",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-10T23:31:28.076Z",
+    "modified": "2022-09-10T23:43:39.046Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "cantidad",
+          "value": "50"
+        },
+        {
+          "name": "producto_id",
+          "value": "p1"
+        },
+        {
+          "name": "almacen_id",
+          "value": "1"
+        },
+        {
+          "name": "precio_id",
+          "value": "2"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "19499b90-09ab-4879-bec9-353d52c6ae9b",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+    "name": "Read",
+    "url": "{{url}}/v1/inventarios/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-10T23:31:28.078Z",
+    "modified": "2022-09-11T23:39:02.323Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "52c0ec33-b2b4-4f54-bf33-67b7a2118f01",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+    "name": "Update",
+    "url": "{{url}}/v1/inventarios/2",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-10T23:31:28.079Z",
+    "modified": "2022-09-10T23:45:25.363Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"cantidad\": 40,\n  \"producto_id\": \"p1\",\n  \"almacen_id\": 1,\n  \"precio_id\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5d32be89-409e-4060-9d8a-da98d18f017b",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+    "name": "Delete",
+    "url": "{{url}}/v1/almacenes/1",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-10T23:31:28.080Z",
+    "modified": "2022-09-10T23:31:28.076Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3ff8cd64-9251-4a30-bb08-b11e1c65358f",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+    "name": "List",
+    "url": "{{url}}/v1/movimientos",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-10T23:32:15.682Z",
+    "modified": "2022-09-10T23:33:15.063Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0d676134-c39a-4253-aad5-c1a6aa9b9a3f",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+    "name": "Create",
+    "url": "{{url}}/v1/almacenes",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-10T23:32:15.684Z",
+    "modified": "2022-09-10T23:32:15.683Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "nombre",
+        "value": "",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "abreviatura",
+        "value": "",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "nombres",
+          "value": "Mi almacen 1"
+        },
+        {
+          "name": "abreviatura",
+          "value": "alm",
+          "isDisabled": true
+        },
+        {
+          "name": "direccion",
+          "value": "direccion almacen",
+          "isDisabled": true
+        },
+        {
+          "name": "latitud",
+          "value": "12312312",
+          "isDisabled": true
+        },
+        {
+          "name": "longitud",
+          "value": "7898898",
+          "isDisabled": true
+        },
+        {
+          "name": "telefono",
+          "value": "1223323",
+          "isDisabled": true
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVO",
+          "isDisabled": true
+        },
+        {
+          "name": "localidad_id",
+          "value": "1",
+          "isDisabled": true
+        },
+        {
+          "name": "is_sucursal",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "e3728be7-b2b6-4472-b5da-9e18493d9610",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+    "name": "Read",
+    "url": "{{url}}/v1/movimientos/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-10T23:32:15.685Z",
+    "modified": "2022-09-10T23:35:51.935Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "06bbdd89-b34d-4fad-ab70-ce60ba54b512",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+    "name": "Update",
+    "url": "{{url}}/v1/movimientos/1",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-10T23:32:15.686Z",
+    "modified": "2022-09-10T23:36:03.222Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "904642d5-8da2-43aa-918e-5f1a9ec4e578",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+    "name": "Delete",
+    "url": "{{url}}/v1/almacenes/1",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-10T23:32:15.687Z",
+    "modified": "2022-09-10T23:32:15.683Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "130bd6dc-d221-478f-a440-3f51ac8d7bc9",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+    "name": "List",
+    "url": "{{url}}/v1/precios",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-10T23:32:34.923Z",
+    "modified": "2022-09-10T23:37:09.504Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6123a199-a323-4a15-b7da-2dffdea311b3",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+    "name": "Create",
+    "url": "{{url}}/v1/precios",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-10T23:32:34.924Z",
+    "modified": "2022-09-10T23:38:38.495Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "precio_venta",
+          "value": "67"
+        },
+        {
+          "name": "descuento",
+          "value": "0"
+        },
+        {
+          "name": "autorizador_id",
+          "value": "1"
+        },
+        {
+          "name": "registro_id",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "eda76d56-5a30-4517-ab2b-4aac7796a237",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+    "name": "Read",
+    "url": "{{url}}/v1/precios/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-10T23:32:34.925Z",
+    "modified": "2022-09-10T23:38:49.437Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f74ad45a-c2ab-43bd-8353-2ac2a6540312",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+    "name": "Update",
+    "url": "{{url}}/v1/precios/1",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-10T23:32:34.926Z",
+    "modified": "2022-09-10T23:41:32.214Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"precio_venta\": 23,\n  \"descuento\": 0,\n  \"autorizador_id\": 1,\n  \"registro_id\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "523575d3-3ac7-4c22-93f5-a3fc62e2723d",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+    "name": "Delete",
+    "url": "{{url}}/v1/almacenes/1",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-10T23:32:34.927Z",
+    "modified": "2022-09-10T23:32:34.923Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3eb56230-2858-4def-a30f-a1a5c24589ed",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+    "name": "List",
+    "url": "{{url}}/v1/inventario-movimientos?inventario=1&page=1&sort=fecha,asc&perPage=2",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-10T23:46:04.468Z",
+    "modified": "2022-09-26T15:18:48.275Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "inventario",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "sort",
+        "value": "fecha,asc",
+        "isPath": false
+      },
+      {
+        "name": "perPage",
+        "value": "2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "7d42a672-da59-4b24-b6c7-a8d86ccd319f",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+    "name": "Create",
+    "url": "{{url}}/v1/inventario-movimientos",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-10T23:46:04.470Z",
+    "modified": "2022-09-10T23:50:42.657Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "ingresos",
+          "value": "50"
+        },
+        {
+          "name": "precio",
+          "value": "13"
+        },
+        {
+          "name": "identificador",
+          "value": "1"
+        },
+        {
+          "name": "origen",
+          "value": "ajuste"
+        },
+        {
+          "name": "movimiento_id",
+          "value": "1"
+        },
+        {
+          "name": "inventario_id",
+          "value": "2"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "757c093a-822a-4277-8df7-d290b4161298",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+    "name": "Read",
+    "url": "{{url}}/v1/inventario-movimientos/4",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-10T23:46:04.471Z",
+    "modified": "2022-09-10T23:56:33.507Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c4bdeb20-3abf-475e-b718-879777482ea5",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+    "name": "Update",
+    "url": "{{url}}/v1/inventario-movimientos/4",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-10T23:46:04.472Z",
+    "modified": "2022-09-10T23:56:42.426Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"precio\": 23,\n  \"fecha_vencimiento\": \"2022-09-10 19:56\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8e9e99cb-8f6d-47c9-904e-7317cf360b74",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+    "name": "Delete",
+    "url": "{{url}}/v1/almacenes/1",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-10T23:46:04.473Z",
+    "modified": "2022-09-10T23:46:04.469Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3ff458fa-6c2c-41b3-ad53-f798f2a3bafa",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+    "name": "List",
+    "url": "{{url}}/v1/proveedores?per_page=1&page=2",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-13T22:38:29.756Z",
+    "modified": "2022-09-21T14:19:42.006Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "per_page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "2",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "c1eb58e7-3db1-4033-9638-fdcd3f579832",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+    "name": "Create",
+    "url": "{{url}}/v1/proveedores",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-13T22:38:29.757Z",
+    "modified": "2022-09-13T22:52:58.519Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "proveedor",
+          "value": "Delizia"
+        },
+        {
+          "name": "razon_social",
+          "value": "Soalpro SRL"
+        },
+        {
+          "name": "nit",
+          "value": "1222011"
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVO"
+        },
+        {
+          "name": "tipos_compras[]",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "3736aa57-3fa9-48a3-a511-dd51fba2a75d",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+    "name": "Read",
+    "url": "{{url}}/v1/proveedores/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-13T22:38:29.758Z",
+    "modified": "2022-09-13T23:07:44.575Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d126b1a7-e1f6-4966-9327-ba5e66254d77",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+    "name": "Update",
+    "url": "{{url}}/v1/proveedores/1",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-13T22:38:29.759Z",
+    "modified": "2022-09-13T22:52:40.478Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"proveedor\": \"Pil edit\",\n  \"tipos_compras\": [1,2]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "72122f5d-c291-4270-bd11-628bd5e29ff7",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+    "name": "Delete",
+    "url": "{{url}}/v1/proveedores/3",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-13T22:38:29.760Z",
+    "modified": "2022-09-13T22:53:14.254Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a9658387-b2a5-4608-9548-cd19cc87e08e",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3a518c58-7b32-4130-945e-0a61732354cb",
+    "name": "List",
+    "url": "{{url}}/v1/tipo-compras",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-13T22:54:25.607Z",
+    "modified": "2022-09-13T23:08:01.251Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9e6d7c28-b4a1-4a04-8969-fbbbcf6569b4",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3a518c58-7b32-4130-945e-0a61732354cb",
+    "name": "Create",
+    "url": "{{url}}/v1/tipo-compras",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-13T22:54:25.608Z",
+    "modified": "2022-09-13T23:09:38.403Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "tipo",
+          "value": "test"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "478154b7-d12f-4247-a9ed-2f8c55e1147b",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3a518c58-7b32-4130-945e-0a61732354cb",
+    "name": "Read",
+    "url": "{{url}}/v1/tipo-compras/1",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-13T22:54:25.609Z",
+    "modified": "2022-09-13T23:08:48.754Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1d951edb-9a1d-4ce8-ae3b-e49430f407d5",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3a518c58-7b32-4130-945e-0a61732354cb",
+    "name": "Update",
+    "url": "{{url}}/v1/tipo-compras/1",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-13T22:54:25.610Z",
+    "modified": "2022-09-13T23:09:28.045Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"tipo\": \"Convenio edit\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "2c9a2146-c465-4c9d-83a5-c98003065a45",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3a518c58-7b32-4130-945e-0a61732354cb",
+    "name": "Delete",
+    "url": "{{url}}/v1/tipo-compras/4",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-13T22:54:25.611Z",
+    "modified": "2022-09-13T23:09:56.809Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f78b9165-8953-4004-9ada-9505e5cc70f1",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+    "name": "List",
+    "url": "{{url}}/v1/contactos?search=jose",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-13T23:10:23.211Z",
+    "modified": "2022-09-19T23:42:47.501Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "search",
+        "value": "jose",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "68dc86c8-d61c-4c9b-860c-4d90c665d1a3",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+    "name": "Create",
+    "url": "{{url}}/v1/contactos",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-13T23:10:23.212Z",
+    "modified": "2022-09-13T23:14:27.993Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "nombres",
+          "value": "test"
+        },
+        {
+          "name": "apellidos",
+          "value": "test"
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVO"
+        },
+        {
+          "name": "datos_proveedores[]",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "91074b4a-db8f-40b2-b2cf-1cc731c496ee",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+    "name": "Read",
+    "url": "{{url}}/v1/contactos/5",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-13T23:10:23.213Z",
+    "modified": "2022-09-13T23:22:52.817Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "418f16c0-2d37-40cf-9f20-b7e8e8e59228",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+    "name": "Update",
+    "url": "{{url}}/v1/contactos/5",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-13T23:10:23.214Z",
+    "modified": "2022-09-13T23:26:38.645Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"datos_proveedores\": [\n    {\n      \"id\": 1,\n      \"action\": \"add\"\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "46787df9-dd94-4549-822f-d0c6991960e1",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+    "name": "Delete",
+    "url": "{{url}}/v1/contactos/5",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-13T23:10:23.215Z",
+    "modified": "2022-09-13T23:27:02.376Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "35ce0042-c38b-45b8-b69c-594de6e65af1",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+    "name": "List",
+    "url": "{{url}}/v1/dato-proveedores?proveedor=1&perPage=6",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-13T23:14:45.048Z",
+    "modified": "2022-09-24T11:32:59.750Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "proveedor",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "perPage",
+        "value": "6",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "efd5263a-6ea3-403b-9d5c-3d298a0155fe",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+    "name": "Create",
+    "url": "{{url}}/v1/dato-proveedores",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-13T23:14:45.049Z",
+    "modified": "2022-09-13T23:16:09.327Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "direccion",
+          "value": "test"
+        },
+        {
+          "name": "proveedor_id",
+          "value": "1"
+        },
+        {
+          "name": "localidad_id",
+          "value": "1"
+        },
+        {
+          "name": "estado",
+          "value": "ACTIVO"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "3bd536f2-738b-4d1a-a348-a3ec5993f0be",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+    "name": "Read",
+    "url": "{{url}}/v1/dato-proveedores/4",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-13T23:14:45.050Z",
+    "modified": "2022-09-13T23:18:20.493Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f0d52e5d-379d-49c2-8634-74e7732940a4",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+    "name": "Update",
+    "url": "{{url}}/v1/dato-proveedores/4",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-13T23:14:45.051Z",
+    "modified": "2022-09-13T23:21:20.466Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"direccion\": \"Test edit\",\n  \"proveedor_id\": 1,\n  \"localidad_id\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "51872a69-726f-4153-a5a6-0631284d0c8c",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+    "name": "Delete",
+    "url": "{{url}}/v1/dato-proveedores/4",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-13T23:14:45.052Z",
+    "modified": "2022-09-13T23:21:41.364Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6c93c96a-339d-43cc-8101-11e5128cc405",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+    "name": "List",
+    "url": "{{url}}/v1/localidades",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-15T18:22:27.055Z",
+    "modified": "2022-09-15T18:25:46.970Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "be3a40d4-da58-4197-b69b-e0e465cc4bd8",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+    "name": "Create",
+    "url": "{{url}}/v1/localidades",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-15T18:22:27.056Z",
+    "modified": "2022-09-15T18:26:39.386Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "localidad",
+          "value": "test"
+        },
+        {
+          "name": "municipio_id",
+          "value": "1"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "4e324c57-c4f5-429c-8f74-16c6b436dc41",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+    "name": "Read",
+    "url": "{{url}}/v1/localidades/6",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-09-15T18:22:27.057Z",
+    "modified": "2022-09-15T18:26:53.080Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e32f0227-1e94-45b5-b9d3-9fd7ddf38039",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+    "name": "Update",
+    "url": "{{url}}/v1/localidades/6",
+    "method": "PUT",
+    "sortNum": 50000,
+    "created": "2022-09-15T18:22:27.059Z",
+    "modified": "2022-09-15T18:27:37.473Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"localidad\": \"Localidad edit\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d2181d62-bdbe-4854-9609-f3bef297503e",
+    "colId": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "containerId": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+    "name": "Delete",
+    "url": "{{url}}/v1/localidades/6",
+    "method": "DELETE",
+    "sortNum": 60000,
+    "created": "2022-09-15T18:22:27.060Z",
+    "modified": "2022-09-15T18:27:49.640Z",
+    "headers": [
+      {
+        "name": "Accept",
+        "value": "application/json"
+      }
+    ],
+    "params": [],
+    "tests": []
+  }
+]

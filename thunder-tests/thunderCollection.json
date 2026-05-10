@@ -1,0 +1,89 @@
+[
+  {
+    "_id": "9b04a83e-8079-44e4-98e6-5f04b7eb45f1",
+    "colName": "HTTP_CLIENT",
+    "created": "2022-09-08T20:22:59.160Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "cebe6a6e-1a09-4df0-b371-a039f9972a98",
+        "name": "Almacenes",
+        "containerId": "",
+        "created": "2022-09-08T21:04:23.229Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "df3842ad-8c04-489e-9f81-509bf9b0254f",
+        "name": "Inventarios",
+        "containerId": "",
+        "created": "2022-09-10T23:31:28.075Z",
+        "sortNum": 18125
+      },
+      {
+        "_id": "bbc24728-eead-4b21-ac41-243ab5a6fb24",
+        "name": "Movimientos",
+        "containerId": "",
+        "created": "2022-09-10T23:32:15.682Z",
+        "sortNum": 15000
+      },
+      {
+        "_id": "05ce464d-7718-4f28-a3e7-751c94a583f9",
+        "name": "Precios",
+        "containerId": "",
+        "created": "2022-09-10T23:32:34.922Z",
+        "sortNum": 17500
+      },
+      {
+        "_id": "9b5dc33d-e234-41cd-aaa5-ec822708153e",
+        "name": "Inventario movimientos",
+        "containerId": "",
+        "created": "2022-09-10T23:46:04.468Z",
+        "sortNum": 18281.3
+      },
+      {
+        "_id": "dfdb2a3e-6f16-41ac-ad72-bd48c05405e5",
+        "name": "Proveedores",
+        "containerId": "",
+        "created": "2022-09-13T22:38:29.755Z",
+        "sortNum": 18437.5
+      },
+      {
+        "_id": "3a518c58-7b32-4130-945e-0a61732354cb",
+        "name": "Tipos de compras",
+        "containerId": "",
+        "created": "2022-09-13T22:54:25.607Z",
+        "sortNum": 28437.5
+      },
+      {
+        "_id": "ff1ec567-0634-42d2-a4e7-a2ac4b02958b",
+        "name": "Contactos",
+        "containerId": "",
+        "created": "2022-09-13T23:10:23.210Z",
+        "sortNum": 38437.5
+      },
+      {
+        "_id": "3930fc7f-b909-4265-9a13-d7327bda75f9",
+        "name": "Datos de proveedores",
+        "containerId": "",
+        "created": "2022-09-13T23:14:45.047Z",
+        "sortNum": 33437.5
+      },
+      {
+        "_id": "b2efa62b-56ec-41a8-95fc-8bb7eac35f3e",
+        "name": "Localidades",
+        "containerId": "",
+        "created": "2022-09-15T18:22:27.054Z",
+        "sortNum": 48437.5
+      }
+    ],
+    "settings": {
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{token}}"
+        }
+      ],
+      "tests": []
+    }
+  }
+]

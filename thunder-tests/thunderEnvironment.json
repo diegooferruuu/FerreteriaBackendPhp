@@ -1,0 +1,43 @@
+[
+  {
+    "_id": "26632a8b-c188-4058-bf00-13917b7f15e2",
+    "name": "ENV_PRODUCCION",
+    "default": false,
+    "sortNum": 10000,
+    "created": "2022-09-08T20:41:20.310Z",
+    "modified": "2022-09-08T20:41:20.310Z",
+    "data": []
+  },
+  {
+    "_id": "3f9ece36-f0d4-4ee2-b30e-6f13cfec2b84",
+    "name": "ENV_FRANK",
+    "default": false,
+    "sortNum": 20000,
+    "created": "2022-09-08T20:41:46.822Z",
+    "modified": "2022-09-10T23:18:17.869Z",
+    "data": [
+      {
+        "name": "url",
+        "value": "http://emapa.bayoex.com/api"
+      },
+      {
+        "name": "token",
+        "value": "bearer 123"
+      }
+    ]
+  },
+  {
+    "_id": "728b86b0-3295-4caa-b6be-d8cfb79a0c7a",
+    "name": "env-gpb",
+    "default": true,
+    "sortNum": 30000,
+    "created": "2022-09-08T21:20:45.068Z",
+    "modified": "2022-09-23T09:53:35.492Z",
+    "data": [
+      {
+        "name": "url",
+        "value": "http://emapa.bayoex.com/api"
+      }
+    ]
+  }
+]
