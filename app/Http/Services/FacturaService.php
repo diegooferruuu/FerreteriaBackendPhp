@@ -261,6 +261,15 @@ class FacturaService
             ],
         ];
         $detalle = [];
+        
+        // Detectar si es alquiler (busca palabra "ALQUILER" en cualquier producto)
+        $esAlquiler = false;
+        foreach ($venta->inventarios as $item) {
+            if (stripos($item->producto->descripcion, 'ALQUILER') !== false) {
+                $esAlquiler = true;
+                break;
+            }
+        }
 
         // mappear detalle y validar que cada item se encuentre homologado
         foreach ($venta->inventarios as $item) {
@@ -270,26 +279,56 @@ class FacturaService
             }
 
 //            dd( );
-            $detalle[] = [
-                'actividadEconomica' => $item->producto->homologacion->catalogoProducto->codigo_actividad,
-                'codigoProductoSin' => $item->producto->homologacion->codigo_siat,
-                'codigoProducto' => $item->producto->id,
-                'descripcion' => $item->producto->descripcion,
-                'cantidad' => $item->pivot->cantidad,
-                'unidadMedida' => (int)$item->producto->unidadMedida->valorCatalogo->codigo_clasificador,
-                'precioUnitario' => $item->pivot->precio,
-                'montoDescuento' => $item->pivot->descuento,
-                'subTotal' => $item->pivot->sub_total,
-                'numeroSerie' => null,
-                'numeroImei' => null
-            ];
+            
+            // Si es alquiler, ajustar parámetros según requisitos SIAT
+            if ($esAlquiler) {
+                $detalleItem = [
+                    'actividadEconomica' => $item->producto->homologacion->catalogoProducto->codigo_actividad,
+                    'codigoProductoSin' => $item->producto->homologacion->codigo_siat,
+                    'codigoProducto' => $item->producto->id,
+                    'descripcion' => $item->producto->descripcion,
+                    'cantidad' => 1,                    // SIAT: Siempre 1 para alquileres
+                    'unidadMedida' => 58,              // SIAT: 58 = Unidad Servicio
+                    'precioUnitario' => $item->pivot->sub_total,  // SIAT: Monto total en precio unitario
+                    'montoDescuento' => 0,             // SIAT: Sin descuentos para alquileres
+                    'subTotal' => $item->pivot->sub_total,
+                    'numeroSerie' => null,
+                    'numeroImei' => null
+                ];
+            } else {
+                // Compra-Venta normal
+                $detalleItem = [
+                    'actividadEconomica' => $item->producto->homologacion->catalogoProducto->codigo_actividad,
+                    'codigoProductoSin' => $item->producto->homologacion->codigo_siat,
+                    'codigoProducto' => $item->producto->id,
+                    'descripcion' => $item->producto->descripcion,
+                    'cantidad' => $item->pivot->cantidad,
+                    'unidadMedida' => (int)$item->producto->unidadMedida->valorCatalogo->codigo_clasificador,
+                    'precioUnitario' => $item->pivot->precio,
+                    'montoDescuento' => $item->pivot->descuento,
+                    'subTotal' => $item->pivot->sub_total,
+                    'numeroSerie' => null,
+                    'numeroImei' => null
+                ];
+            }
+            
+            $detalle[] = $detalleItem;
         }
 
         $factura['detalle'] = $detalle;
 
         // Proceso SIAT
         //1.Generar archivo xml
-        $xmlVenta = $this->generateXmlInvoice('electronica', $factura);
+        if ($esAlquiler) {
+            // Generar XML de alquiler con período automático
+            $xmlVenta = $this->generateXmlAlquiler('electronica', $factura);
+            // Cambiar código de documento sector para alquileres
+            $this->codigoDocumentoSector = 2;
+        } else {
+            // Generar XML de compra-venta normal
+            $xmlVenta = $this->generateXmlInvoice('electronica', $factura);
+            $this->codigoDocumentoSector = 1;
+        }
         // return $xmlVenta;
         $randomNameXml = uniqid('f_', true);
         //nombre path a subir
@@ -332,8 +371,15 @@ class FacturaService
         try {
             $xmlSignedPath = Storage::disk('private')->path($xmlFilePath);
 
+            // Determinar el XSD correcto según el tipo de factura
+            if ($esAlquiler) {
+                $xsdFile = public_path('facturaElectronicaAlquilerBienInmueble.xsd');
+            } else {
+                $xsdFile = public_path('facturaElectronicaCompraVenta.xsd');
+            }
+
             $xmlValidate = new XmlValidator();
-            $xmlValidated = $xmlValidate->validate($xmlSignedPath, public_path('facturaElectronicaCompraVenta.xsd'));
+            $xmlValidated = $xmlValidate->validate($xmlSignedPath, $xsdFile);
             if (!$xmlValidated) {
                 throw new \Exception("{$xmlValidate->getXmlErrorsString()}");
             }

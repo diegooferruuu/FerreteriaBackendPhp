@@ -120,6 +120,7 @@ trait XmlFile
             'rootElementName' => "factura{$type}AlquilerBienInmueble",
             '_attributes' => [
                 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+                'xmlns:ds' => 'http://www.w3.org/2000/09/xmldsig#',
                 'xsi:noNamespaceSchemaLocation' => "factura{$type}AlquilerBienInmueble.xsd",
             ],
         ], true, 'UTF-8', '1.0', [], true);
