@@ -45,10 +45,14 @@ class CuisController extends Controller
 
             //para solicitar cuis para el punto de venta aunque sera el mismo cuis
             $sucursal = Sucursal::where('id',$data['sucursal_id'])->first();
-            if($sucursal->codigo_siat == 0)
+            
+            // Solicitar CUIS para cada punto de venta de la sucursal
+            if($sucursal)
             {
-                $pos = PuntoVenta::where('codigo_siat',0)->where('sucursal_id',$sucursal->id)->first();
-                $cuisService->handleStore(['punto_venta_id' => $pos->id]);
+                $puntosVenta = PuntoVenta::where('sucursal_id',$sucursal->id)->get();
+                foreach($puntosVenta as $pos) {
+                    $cuisService->handleStore(['punto_venta_id' => $pos->id]);
+                }
             }
             return $this->CreatedResponse(new CuisResource($data), 'Se registro correctamente!', Response::HTTP_CREATED);
         } catch (\Throwable $error) {
