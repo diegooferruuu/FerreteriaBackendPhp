@@ -105,7 +105,7 @@ trait XmlFile
             $hoy = \Carbon\Carbon::now();
             $primerDia = $hoy->copy()->firstOfMonth()->format('d/m/Y');
             $ultimoDia = $hoy->copy()->lastOfMonth()->format('d/m/Y');
-            $periodo = "{$primerDia} - {$ultimoDia}";
+            $periodo = "{$primerDia} al {$ultimoDia}";
         }
 
         // Agregar período a los datos si no existe
