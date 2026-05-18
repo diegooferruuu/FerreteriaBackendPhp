@@ -133,7 +133,7 @@ class FacturaService
 
         $params['fecha'] = $venta->fecha;
         $params['branchCode'] = $venta->sucursal->codigo_siat;
-        $params['posCode'] = $venta->pos->codigo_siat;
+        $params['posCode'] = (int) $venta->pos->codigo_siat;
         $params['departamento'] = $venta->sucursal->departamento->departamento;
         $params['telefono'] = $venta->sucursal->telefono;
         $params['direccion'] = $venta->sucursal->direccion;
@@ -171,11 +171,10 @@ class FacturaService
      * @param array $params Argumentos necesarios para generar la factura
      * @return Factura
      */
-    public function createInvoice(Venta $venta, $params,$eventoSignificativo = null, $emisionMasiva = null)
+    public function createInvoice(Venta $venta, $params, $eventoSignificativo = null, $emisionMasiva = null)
     {
         $dataCatalogoLeyenda = SincronizacionCatalogo::where('syncable_type','sucursal')->where('syncable_id',1)->where('catalogo_facturacion_id',3)->get()[0]->valores;
-//        dd($dataCatalogoLeyenda);
-        $leyenda = $dataCatalogoLeyenda->random()->descripcion; // 'Ley N° 453: Está prohibido importar, distribuir o comercializar productos expirados o prontos a expirar.';
+        $leyenda = $dataCatalogoLeyenda->random()->descripcion;
 
         $usuario = auth()->user()?->username ?? 'pperez';
         $codigoMoneda = 1;
@@ -187,13 +186,21 @@ class FacturaService
             $codigoExcepcion = 0;
         }
 
-
         $fecha = new DateTime($params['fecha']);
+
+        // 1. IDENTIFICAR TIPO DE DOCUMENTO ANTES DE GENERAR EL CUF
+        $esAlquiler = false;
+        foreach ($venta->inventarios as $item) {
+            if (stripos($item->producto->descripcion, 'ALQUILER') !== false) {
+                $esAlquiler = true;
+                $this->codigoDocumentoSector = 2; // Actualizamos el sector para el CUF
+                break;
+            }
+        }
 
         //para evento significativo 5.6.7
         if(in_array($eventoSignificativo?->evento->codigo_clasificador,[5,6,7]))
         {
-//            $params['cufd'] = $eventoSignificativo->cufd_evento;
             $params['cafc'] =   $eventoSignificativo->cafc;
             $this->codigoEmision = EmissionCode::OFFLINE->value;
         }else{
@@ -204,8 +211,7 @@ class FacturaService
             $this->codigoEmision = EmissionCode::MASSIVE->value;
         }
 
-//        dd($this->codigoEmision);
-        // Generar CUF
+        // 2. GENERAR CUF (Ahora utilizará el sector correcto: 1 o 2 dependiendo de lo evaluado arriba)
         $cuf = $this->generateCuf(
             $this->sistema->nit,
             $fecha->format("YmdHisv"),
@@ -218,68 +224,57 @@ class FacturaService
             $params['posCode']);
         $cuf = $cuf . $params['codigoControl'];
 
-        //        dd($venta->cliente->tipo_documento_id);
-        // array factura para xml
+        // 3. ARMAR EL ARRAY DE FACTURA PARA EL XML
         $factura = [
             'cabecera' => [
-                'nitEmisor' => $this->sistema->nit,//Emapa
+                'nitEmisor' => $this->sistema->nit,
                 'razonSocialEmisor' => $this->sistema->razon_social,
                 'municipio' => $params['departamento'],
                 'telefono' => $params['telefono'],
-                'numeroFactura' => $venta->codigo_secuencia,//Generar automaticamente por sucursal
-                'cuf' => $cuf, //Concatenar el Codigo de control obtenida al solicitar CUFD
-                'cufd' => $params['cufd'], //Cufd de la sucursal/punto de venta actual
+                'numeroFactura' => $venta->codigo_secuencia,
+                'cuf' => $cuf, 
+                'cufd' => $params['cufd'], 
                 'codigoSucursal' => $params['branchCode'],
                 'direccion' => $params['direccion'],
                 'codigoPuntoVenta' => $params['posCode'],
                 'fechaEmision' => $fecha->format('Y-m-d\TH:i:s.v'),
                 'nombreRazonSocial' => $venta->cliente->razon_social,
-                'codigoTipoDocumentoIdentidad' => $venta->cliente->tipoDocumento->codigo_clasificador, //Obtener codigo desde catalogos $venta->cliente->tipo_documento_id,
+                'codigoTipoDocumentoIdentidad' => $venta->cliente->tipoDocumento->codigo_clasificador, 
                 'numeroDocumento' => $venta->cliente->cedula_nit,
                 'complemento' => $venta->cliente->complemento ?? [
                         '_attributes' => ['xsi:nil' => "true"],
                     ],
-                'codigoCliente' => $venta->cliente->id, //Generado por emapa
-                'codigoMetodoPago' => $venta->metodoPago->codigo_metodo_pago_siat, //Codigo siat metodo de pago
+                'codigoCliente' => $venta->cliente->id, 
+                'codigoMetodoPago' => $venta->metodoPago->codigo_metodo_pago_siat, 
                 'numeroTarjeta' => obfuscate($venta->informacion_tarjeta, '0', 4, 4) ?? [
                         '_attributes' => ['xsi:nil' => "true"],
                     ],
                 'montoTotal' => $venta->total,
                 'montoTotalSujetoIva' => $venta->total,
-                'codigoMoneda' => $codigoMoneda,//Codigo siat tipo moneda
+                'codigoMoneda' => $codigoMoneda,
                 'tipoCambio' => $tipoCambio,
                 'montoTotalMoneda' => $venta->total,
                 'montoGiftCard' => [
                     '_attributes' => ['xsi:nil' => "true"],
                 ],
                 'descuentoAdicional' => $venta->descuento ?? 0,
-                'codigoExcepcion' => $codigoExcepcion, // No validar nit de cliente
+                'codigoExcepcion' => $codigoExcepcion, 
                 'cafc' => $params['cafc'],
                 'leyenda' => $leyenda,
                 'usuario' => $usuario,
                 'codigoDocumentoSector' => $this->codigoDocumentoSector,
             ],
         ];
-        $detalle = [];
-        
-        // Detectar si es alquiler (busca palabra "ALQUILER" en cualquier producto)
-        $esAlquiler = false;
-        foreach ($venta->inventarios as $item) {
-            if (stripos($item->producto->descripcion, 'ALQUILER') !== false) {
-                $esAlquiler = true;
-                break;
-            }
-        }
 
-        // mappear detalle y validar que cada item se encuentre homologado
+        $detalle = [];
+
+        // 4. MAPEAR DETALLE Y HOMOLOGACIÓN
         foreach ($venta->inventarios as $item) {
             if (!$item->producto->homologacion) {
                 throw new \Exception("{$item->producto->descripcion} no homologado");
                 break;
             }
 
-//            dd( );
-            
             // Si es alquiler, ajustar parámetros según requisitos SIAT
             if ($esAlquiler) {
                 $detalleItem = [
@@ -288,7 +283,7 @@ class FacturaService
                     'codigoProducto' => $item->producto->id,
                     'descripcion' => $item->producto->descripcion,
                     'cantidad' => 1,                    // SIAT: Siempre 1 para alquileres
-                    'unidadMedida' => 58,              // SIAT: 58 = Unidad Servicio
+                    'unidadMedida' => (int)$item->producto->unidadMedida->valorCatalogo->codigo_clasificador,              // SIAT: 58 = Unidad Servicio
                     'precioUnitario' => $item->pivot->sub_total,  // SIAT: Monto total en precio unitario
                     'montoDescuento' => 0,             // SIAT: Sin descuentos para alquileres
                     'subTotal' => $item->pivot->sub_total,
@@ -317,38 +312,29 @@ class FacturaService
 
         $factura['detalle'] = $detalle;
 
-        // Proceso SIAT
-        //1.Generar archivo xml
+        // 5. PROCESO SIAT: GENERAR ARCHIVO XML
         if ($esAlquiler) {
-            // Generar XML de alquiler con período automático
+            // El trait limpiará los datos sobrantes e inyectará el periodo facturado
             $xmlVenta = $this->generateXmlAlquiler('electronica', $factura);
-            // Cambiar código de documento sector para alquileres
-            $this->codigoDocumentoSector = 2;
         } else {
             // Generar XML de compra-venta normal
             $xmlVenta = $this->generateXmlInvoice('electronica', $factura);
-            $this->codigoDocumentoSector = 1;
         }
-        // return $xmlVenta;
-        $randomNameXml = uniqid('f_', true);
-        //nombre path a subir
-        //modo offline
 
+        $randomNameXml = uniqid('f_', true);
+
+        // Definir la ruta del archivo según la modalidad
         if (EmissionCode::from($this->codigoEmision) == EmissionCode::OFFLINE || in_array($eventoSignificativo?->evento->codigo_clasificador,[5,6,7])) {
             $xmlFilePath = "facturas/" . $venta->punto_venta_id . "/" . $fecha->format('d-m-Y') . "/paquete/xml/" . $randomNameXml . ".xml";
         } elseif(!is_null($emisionMasiva))
         {
             $xmlFilePath = "facturas/" . $venta->punto_venta_id . "/" . $fecha->format('d-m-Y') . "/masivo/xml/" . $randomNameXml . ".xml";
         } else {
-            //modo online
             $xmlFilePath = "facturas/" . $venta->punto_venta_id . "/" . $fecha->format('d-m-Y') . "/xml/" . $randomNameXml . ".xml";
         }
 
-        //2. Firmar el archivo
+        // 6. FIRMAR EL ARCHIVO
         try {
-//            dd($xmlFilePath);
-            // $certPath = public_path('emapa.pfx.pem'); // Antes convertir pfx -> pem (private+certificate keys)
-
             $pfxContent = (new FirmaService())->getPfxContent();
 
             if($pfxContent === false )
@@ -356,18 +342,16 @@ class FacturaService
                 return false;
             }
             $signer = new SignedXml();
-
             $signer->setCertificate($pfxContent);
-
             $xmlSigned = $signer->signXml($xmlVenta);
 
-           Storage::disk('private')->put($xmlFilePath, $xmlSigned);
+            Storage::disk('private')->put($xmlFilePath, $xmlSigned);
 
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
 
-        //3. Validar contra el XSD
+        // 7. VALIDAR CONTRA EL XSD CORRECTO
         try {
             $xmlSignedPath = Storage::disk('private')->path($xmlFilePath);
 
@@ -386,13 +370,13 @@ class FacturaService
         } catch (\Throwable $th) {
             throw $th;
         }
-//        dd( json_decode($venta));
-        // Registro de factura local
+
+        // 8. REGISTRO DE FACTURA LOCAL
         $nuevaFactura = Factura::create([
             'codigo_documento_sector' => $this->codigoDocumentoSector,
             'codigo_tipo_factura' => $this->tipoFactura,
             'numero_documento_identidad' => $venta->cliente->cedula_nit,
-            'codigo_documento_identidad' => $venta->cliente->tipo_documento_id, //$venta->cliente->tipoDocumento->codigo_clasificador,
+            'codigo_documento_identidad' => $venta->cliente->tipo_documento_id, 
             'codigo_metodo_pago' => $venta->metodoPago->codigo_metodo_pago_siat,
             'codigo_cliente' => $venta->cliente->id,
             'razon_social' => $venta->cliente->razon_social,
